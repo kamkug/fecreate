@@ -66,9 +66,9 @@ CLASS=$(grep -oE 'tclass=.*[ ]' $FILENAME | uniq -d | cut -d = -f 2)
 #echo $ENTRIES
 #echo ${PERMS[@]}
 
+audit2allow -M $SOURCE'-'$TARGET -i $FILENAME
+semodule -i $SOURCE'-'$TARGET.pp
 #Compose a .te file based on the above template
-echo -e "module mypolicy 1.0;\n\nrequire {\n    type "$TARGET"\n    type "$SOURCE"\n    class "$CLASS "{ "${PERMS[@]}" }\n}"\
-"\n\n============= "$SOURCE" ==============\nallow "$SOURCE $TARGET:$CLASS "{ "${PERMS[@]}" };" > $SOURCE"-to-"$TARGET".te"
 
 #clean afterwards
 rm -rf dummy.se
