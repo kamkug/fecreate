@@ -3,8 +3,8 @@ Simple cli app to create a SELinux .te file
 
 Script was created by Kamil Kugler and should be working on RedHat 8.0.
 I can not take responsibility for any bugs
-it might be introducing as I am dong it only
-for fun. Use at own risk!
+it might be introducing as I am doing it only
+for the fun of it. Use at your own risk!
 Free to be reproduced if such a will arise.
 
 # Description
