@@ -6,29 +6,6 @@
 #for fun. Use at own risk!
 #Free to be reproduced if such a will arise.
 
-#--------------------------DESCRIPTION-----------------------------
-#
-#The script itself create a module.te file only and any further 
-#action has to be manually performed, at least as of now.
-#This script is to be run using a permissive mode set to 1
-#which can be achieved in a following way:
-#>>> setenforce permissive
-#due to the fact that selinux needs to allow required actions to let 
-#a specific process to access its desired destination
-
-#The template it is based on:
-
-#module mypolicy 1.0;
-#
-#require {
-#	type default_t;
-#	type httpd_t;
-#	class file getattr;
-#}
-#
-#============= httpd_t ==============
-#allow httpd_t default_t:file getattr;
-
 
 #check for user inputs
 if [ -z $1 ] || [ -z $2 ];
@@ -58,17 +35,9 @@ TARGET=$( cut -d : -f 9 $FILENAME | uniq -d )
 SOURCE=$( cut -d : -f 6 $FILENAME | uniq -d )
 CLASS=$(grep -oE 'tclass=.*[ ]' $FILENAME | uniq -d | cut -d = -f 2)
 
-#FOR testing only, can be removed
-#cat $FILENAME
-#echo $CLASS
-#echo $TARGET
-#echo $SOURCE
-#echo $ENTRIES
-#echo ${PERMS[@]}
 
 audit2allow -M $SOURCE'-'$TARGET -i $FILENAME
 semodule -i $SOURCE'-'$TARGET.pp
-#Compose a .te file based on the above template
 
 #clean afterwards
 rm -rf dummy.se

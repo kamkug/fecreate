@@ -21,16 +21,3 @@ setenforce permissive
 due to the fact that selinux needs to allow required actions to let 
 a specific process to access its desired destination
 
-# The template it is based on:
-```
-module mypolicy 1.0;
-
-require {
-       type default_t;
-       type httpd_t;
-       class file getattr;
-}
-
-============= httpd_t ==============
-allow httpd_t default_t:file getattr;
-```
