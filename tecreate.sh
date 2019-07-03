@@ -31,7 +31,7 @@ TARGET=$( cut -d : -f 9 $FILENAME | uniq -d )
 SOURCE=$( cut -d : -f 6 $FILENAME | uniq -d )
 
 #Create and apply the module automatically
-audit2allow -M $SOURCE'-'$TARGET -i $FILENAME
+audit2allow -M $SOURCE'-'$TARGET -i $FILENAME &> /dev/null
 semodule -i $SOURCE'-'$TARGET.pp
 
 #clean afterwards
