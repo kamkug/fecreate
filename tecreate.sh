@@ -7,7 +7,7 @@
 #check for user inputs
 if [ -z $1 ] || [ -z $2 ];
 then
-	echo "usage: $0 {source_process} {destination}"
+	echo "[-] usage: $0 {source_process} {destination}"
 	exit 1
 fi
 
@@ -23,7 +23,7 @@ RESULT=( $(cat $FILENAME) )
 
 if [ -z $RESULT ]; 
 then  
-	echo "Required entry is not present inside of an audit.log" 
+	echo "[-] Required entry is not present inside of an audit.log" 
 	exit 2
 fi
 #Get some basic info for the name of that module
