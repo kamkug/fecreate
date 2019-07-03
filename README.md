@@ -1,4 +1,4 @@
-# fecreate
+# gecreate
 Simple cli app to create a SELinux .te file
 
 Script was created by Kamil Kugler
