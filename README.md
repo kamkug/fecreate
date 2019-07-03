@@ -1,7 +1,7 @@
 # gecreate
 Simple cli app to create a SELinux .te file
 
-Script was created by Kamil Kugler
+Script was created by Kamil Kugler and should be working on RedHat 8.0.
 I can not take responsibility for any bugs
 it might be introducing as I am dong it only
 for fun. Use at own risk!
