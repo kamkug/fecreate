@@ -29,17 +29,15 @@ then
 	echo "Required entry is not present inside of an audit.log" 
 	exit 2
 fi
-
-PERMS=( $( grep -oe {.*} $FILENAME | cut -d ' ' -f 2 ) )
+#Get some basic info for the name of that module
 TARGET=$( cut -d : -f 9 $FILENAME | uniq -d )
 SOURCE=$( cut -d : -f 6 $FILENAME | uniq -d )
-CLASS=$(grep -oE 'tclass=.*[ ]' $FILENAME | uniq -d | cut -d = -f 2)
 
-
+#Create and apply the module automatically
 audit2allow -M $SOURCE'-'$TARGET -i $FILENAME
 semodule -i $SOURCE'-'$TARGET.pp
 
 #clean afterwards
 rm -rf dummy.se
 
-echo "[+] The file has been succesfully created"
+echo "[+] The whole operation was successful"
